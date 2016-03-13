@@ -40,6 +40,17 @@ INSTALLED_APPS = [
     'recipes_adviser',
 ]
 
+
+# Absolute path to the directory that holds media
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Ingredients
+INGREDIENT_IMAGE_PATH = 'uploads/ingredients/'
+
+# Recipes
+RECIPE_IMAGE_PATH = 'uploads/recipes/'
+
+
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
