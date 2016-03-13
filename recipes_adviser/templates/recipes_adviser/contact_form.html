@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Свяжитесь с нами</title>
+</head>
+<body>
+    <h1>Свяжитесь с нами</h1>
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="{% url 'recipes_adviser:contact' %}" method="post">
+    {% csrf_token %}
+        <p>Тема: <input type="text" name="subject"></p>
+        <p>Ваш e-mail (необязательно): <input type="text" name="e-mail"></p>
+        <p>Сообщение:
+            <textarea name="message" rows="10" cols="50"></textarea>
+        </p>
+        <input type="submit" value="Отправить">
+    </form>
+</body>
+</html>
