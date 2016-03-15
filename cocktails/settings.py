@@ -44,6 +44,8 @@ INSTALLED_APPS = [
 # Absolute path to the directory that holds media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+MEDIA_URL = '/media/'
+
 # Ingredients
 INGREDIENT_IMAGE_PATH = 'uploads/ingredients/'
 

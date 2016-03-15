@@ -1,10 +1,12 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404, \
-    render_to_response
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.core.mail import send_mail
+from django.conf import settings
 
 from .models import Ingredient
+
+IMG_SIZE = {'height': 250, 'width': 250}
 
 
 def index(request):
@@ -20,9 +22,12 @@ def ingredients(request):
 
 
 def ingredient(request, ingredient_id):
-    ingredient = get_object_or_404(Ingredient, id=ingredient_id)
-    return render(request, 'recipes_adviser/detail.html',
-                  {'ingredient': ingredient})
+    ingredient_obj = get_object_or_404(Ingredient, id=ingredient_id)
+    if not ingredient_obj.image:
+        ingredient_obj.image = {'url': settings.DEFAULT_INGREDIENT_IMG_URL}
+    return render_to_response('recipes_adviser/ingredient_detail.html',
+                              {'ingredient': ingredient_obj,
+                               'img_size': IMG_SIZE})
 
 
 def search(request):

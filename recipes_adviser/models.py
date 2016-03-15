@@ -10,6 +10,7 @@ class Ingredient(models.Model):
     abv = models.FloatField('alcohol by volume', default=0.0)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to=settings.INGREDIENT_IMAGE_PATH,
+                              default=settings.DEFAULT_INGREDIENT_IMG,
                               null=True, blank=True)
 
     def __str__(self):
@@ -46,9 +47,9 @@ class Recipe(models.Model):
     title = models.CharField('name', max_length=250, db_index=True)
     author = models.ForeignKey(User, related_name='authors',
                                null=True, blank=True, db_index=True)
-    title_image = models.ImageField('title image',
+    title_image = models.ImageField('title image', null=True, blank=True,
                                     upload_to=settings.RECIPE_IMAGE_PATH,
-                                    null=True, blank=True)
+                                    default=settings.DEFAULT_RECIPE_IMG)
     description = models.TextField(blank=True)
     ingredients = models.ManyToManyField(CocktailComponent,
                                          related_name='ingredients')
