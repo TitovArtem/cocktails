@@ -44,13 +44,25 @@ INSTALLED_APPS = [
 # Absolute path to the directory that holds media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# URL that handles the media served from MEDIA_ROOT
 MEDIA_URL = '/media/'
 
 # Ingredients
-INGREDIENT_IMAGE_PATH = 'uploads/ingredients/'
+INGREDIENT_IMAGE_PATH = 'img/ingredients/'
 
 # Recipes
-RECIPE_IMAGE_PATH = 'uploads/recipes/'
+RECIPE_IMAGE_PATH = 'img/recipes/'
+
+# Default image for ingredients
+DEFAULT_INGREDIENT_IMG = os.path.join(INGREDIENT_IMAGE_PATH,
+                                      'default_ingredient.png')
+DEFAULT_INGREDIENT_IMG_URL = os.path.join(MEDIA_URL, DEFAULT_INGREDIENT_IMG)
+DEFAULT_INGREDIENT_IMG_PATH = os.path.join(MEDIA_ROOT, DEFAULT_INGREDIENT_IMG)
+
+# Default image for recipes
+DEFAULT_RECIPE_IMG = os.path.join(RECIPE_IMAGE_PATH, 'default_recipe.png')
+DEFAULT_RECIPE_IMG_URL = os.path.join(MEDIA_URL, DEFAULT_RECIPE_IMG)
+DEFAULT_RECIPE_IMG_PATH = os.path.join(MEDIA_ROOT, DEFAULT_RECIPE_IMG)
 
 
 MIDDLEWARE_CLASSES = [
