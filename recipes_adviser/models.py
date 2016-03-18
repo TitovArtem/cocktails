@@ -13,16 +13,6 @@ class Ingredient(models.Model):
                               default=settings.DEFAULT_INGREDIENT_IMG,
                               null=True, blank=True)
 
-    def __str__(self):
-        return '<name: %s, abv: %0.1f, is_liquid: %s>' % \
-               (self.name, self.abv, self.liquid)
-
-
-class CocktailComponent(models.Model):
-    """ It contains ingredient, quantity and measure of that. """
-    ingredient = models.ForeignKey(Ingredient, related_name='ingredients')
-    quantity = models.FloatField('quantity of ingredient')
-
     # Liquid ingredients are measured in millilitres, non liquid - in grams,
     # something else can measured in units (ice cubes, for example)
     MEASURES = (
@@ -31,6 +21,18 @@ class CocktailComponent(models.Model):
         ('pcs', 'Pieces')
     )
     measure = models.CharField(max_length=3, choices=MEASURES)
+
+    def __str__(self):
+        return '<name: %s, abv: %0.1f, is_liquid: %s>' % \
+               (self.name, self.abv, self.liquid)
+
+
+class CocktailComponent(models.Model):
+    """ It contains ingredient, quantity and measure of that. """
+    ingredient = models.ForeignKey(Ingredient, related_name='ingredients')
+    up_quantity = models.FloatField('up quantity of ingredient')
+    to_quantity = models.FloatField('to quantity of ingredient',
+                                    default=None, null=True, blank=True)
 
 
 class RecipeStage(models.Model):
