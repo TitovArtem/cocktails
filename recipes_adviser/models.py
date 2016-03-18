@@ -61,4 +61,5 @@ class Recipe(models.Model):
         ('st', 'Shot'),
         ('lg', 'Long'),
     )
-    type = models.CharField('type of cocktail', max_length=3)
+    type = models.CharField('type of cocktail', max_length=3,
+                            choices=COCKTAIL_TYPE)

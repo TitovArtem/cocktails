@@ -25,10 +25,10 @@ class CocktailComponentInline(admin.StackedInline):
 
 
 class RecipeAdmin(admin.ModelAdmin):
-
+    list_display = ('title', 'author', 'type',)
     fieldsets = [
-        (None,              {'fields': ['title', 'author', 'description',
-                                        'title_image']}),
+        (None, {'fields': ['title', 'author', 'description',
+                           'title_image', 'type']}),
     ]
     inlines = [RecipeStageInline, CocktailComponentInline]
 
