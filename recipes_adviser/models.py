@@ -54,3 +54,9 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(CocktailComponent,
                                          related_name='ingredients')
     stages = models.ManyToManyField(RecipeStage, related_name='stages')
+
+    COCKTAIL_TYPE = (
+        ('st', 'Shot'),
+        ('lg', 'Long'),
+    )
+    type = models.CharField('type of cocktail', max_length=3)

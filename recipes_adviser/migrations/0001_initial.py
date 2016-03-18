@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('liquid', models.BooleanField(default=True, verbose_name='is liquid')),
                 ('abv', models.FloatField(default=0.0, verbose_name='alcohol by volume')),
                 ('description', models.TextField()),
-                ('image', models.ImageField(blank=True, null=True, upload_to='uploads/ingredients/')),
+                ('image', models.ImageField(blank=True, null=True, upload_to='img/ingredients/')),
             ],
         ),
         migrations.CreateModel(
@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(db_index=True, max_length=250, verbose_name='name')),
-                ('title_image', models.ImageField(blank=True, null=True, upload_to='uploads/recipes/', verbose_name='title image')),
+                ('title_image', models.ImageField(blank=True, null=True, upload_to='img/recipes/', verbose_name='title image')),
                 ('description', models.TextField()),
                 ('author', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='authors', to=settings.AUTH_USER_MODEL)),
                 ('ingredients', models.ManyToManyField(related_name='ingredients', to='recipes_adviser.CocktailComponent')),
