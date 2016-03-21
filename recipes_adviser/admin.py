@@ -19,7 +19,7 @@ class RecipeStageInline(admin.StackedInline):
 
 
 class CocktailComponentInline(admin.StackedInline):
-    model = Recipe.ingredients.through
+    model = Recipe.components.through
     verbose_name = 'Component'
     verbose_name_plural = 'Cocktail components'
 

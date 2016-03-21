@@ -29,7 +29,7 @@ class Ingredient(models.Model):
 
 class CocktailComponent(models.Model):
     """ It contains ingredient, quantity and measure of that. """
-    ingredient = models.ForeignKey(Ingredient, related_name='ingredients')
+    ingredient = models.ForeignKey(Ingredient, related_name='components')
     up_quantity = models.FloatField('up quantity of ingredient')
     to_quantity = models.FloatField('to quantity of ingredient',
                                     default=None, null=True, blank=True)
@@ -47,15 +47,17 @@ class RecipeStage(models.Model):
 class Recipe(models.Model):
     """ Cocktail's recipe. """
     title = models.CharField('name', max_length=250, db_index=True)
-    author = models.ForeignKey(User, related_name='authors',
+    author = models.ForeignKey(User, related_name='recipes',
                                null=True, blank=True, db_index=True)
     title_image = models.ImageField('title image', null=True, blank=True,
                                     upload_to=settings.RECIPE_IMAGE_PATH,
                                     default=settings.DEFAULT_RECIPE_IMG)
     description = models.TextField(blank=True)
-    ingredients = models.ManyToManyField(CocktailComponent,
-                                         related_name='ingredients')
-    stages = models.ManyToManyField(RecipeStage, related_name='stages')
+
+    # Ingredient with quantity
+    components = models.ManyToManyField(CocktailComponent,
+                                        related_name='recipes')
+    stages = models.ManyToManyField(RecipeStage, related_name='recipes')
 
     COCKTAIL_TYPE = (
         ('st', 'Shot'),
