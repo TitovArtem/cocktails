@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^search/$', views.search, name='search'),
     url(r'^contact/$', views.contact, name='contact'),
     url(r'^contact/thanks/$', views.thanks, name='thanks'),
+    url(r'^recipe/(?P<recipe_id>[0-9]+)/$', views.recipe, name='recipe_detail'),
 ]
