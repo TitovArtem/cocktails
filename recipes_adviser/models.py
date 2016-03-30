@@ -23,8 +23,7 @@ class Ingredient(models.Model):
     measure = models.CharField(max_length=3, choices=MEASURES)
 
     def __str__(self):
-        return '<name: %s, abv: %0.1f, is_liquid: %s>' % \
-               (self.name, self.abv, self.liquid)
+        return self.name
 
 
 class CocktailComponent(models.Model):
@@ -33,6 +32,11 @@ class CocktailComponent(models.Model):
     up_quantity = models.FloatField('up quantity of ingredient')
     to_quantity = models.FloatField('to quantity of ingredient',
                                     default=None, null=True, blank=True)
+
+    def __str__(self):
+        return '%s (%s - %s)' % (self.ingredient.name,
+                                 self.up_quantity,
+                                 self.to_quantity)
 
 
 class RecipeStage(models.Model):
@@ -43,6 +47,10 @@ class RecipeStage(models.Model):
     stage_number = models.PositiveSmallIntegerField(default=1)
     content = models.TextField()
 
+    def __str__(self):
+        short_content = self.content.split('.')[0][:60]
+        return '#%d %s' % (self.stage_number, short_content)
+
 
 class CocktailTool(models.Model):
     """ Tool for making cocktails. """
@@ -51,6 +59,9 @@ class CocktailTool(models.Model):
     image = models.ImageField(null=True, blank=True,
                               upload_to=settings.TOOL_IMAGE_PATH,
                               default=settings.DEFAULT_TOOL_IMG)
+
+    def __str__(self):
+        return self.name
 
 
 class Recipe(models.Model):
@@ -76,3 +87,6 @@ class Recipe(models.Model):
     )
     type = models.CharField('type of cocktail', max_length=3,
                             choices=COCKTAIL_TYPE)
+
+    def __str__(self):
+        return self.title

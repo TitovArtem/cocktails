@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Ingredient, Recipe, RecipeStage, CocktailComponent
+from .models import Ingredient, Recipe, RecipeStage, \
+    CocktailComponent, CocktailTool
 
 
 class IngredientAdmin(admin.ModelAdmin):
@@ -10,6 +11,17 @@ class IngredientAdmin(admin.ModelAdmin):
 
 class CocktailComponentAdmin(admin.ModelAdmin):
     raw_id_fields = ['ingredient']
+
+
+class CocktailToolAdmin(admin.ModelAdmin):
+    list_display = ('name', )
+    search_fields = ('name', )
+
+
+class CocktailToolInline(admin.TabularInline):
+    model = Recipe.tools.through
+    verbose_name = 'Tool'
+    verbose_name_plural = 'Cocktail tools'
 
 
 class RecipeStageInline(admin.StackedInline):
@@ -30,10 +42,11 @@ class RecipeAdmin(admin.ModelAdmin):
         (None, {'fields': ['title', 'author', 'description',
                            'title_image', 'type']}),
     ]
-    inlines = [RecipeStageInline, CocktailComponentInline]
+    inlines = [RecipeStageInline, CocktailComponentInline, CocktailToolInline]
 
 
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(RecipeStage)
 admin.site.register(CocktailComponent, CocktailComponentAdmin)
+admin.site.register(CocktailTool, CocktailToolAdmin)
