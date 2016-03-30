@@ -44,7 +44,7 @@ class RecipeStage(models.Model):
     content = models.TextField()
 
 
-class Tool(models.Model):
+class CocktailTool(models.Model):
     """ Tool for making cocktails. """
     name = models.CharField('name', max_length=200, db_index=True)
     description = models.TextField(blank=True)
@@ -68,7 +68,7 @@ class Recipe(models.Model):
                                         related_name='recipes')
     stages = models.ManyToManyField(RecipeStage, related_name='recipes')
 
-    tools = models.ManyToManyField(Tool, related_name='recipes')
+    tools = models.ManyToManyField(CocktailTool, related_name='recipes')
 
     COCKTAIL_TYPE = (
         ('st', 'Shot'),
