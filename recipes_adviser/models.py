@@ -44,6 +44,15 @@ class RecipeStage(models.Model):
     content = models.TextField()
 
 
+class Tool(models.Model):
+    """ Tool for making cocktails. """
+    name = models.CharField('name', max_length=200, db_index=True)
+    description = models.TextField(blank=True)
+    image = models.ImageField(null=True, blank=True,
+                              upload_to=settings.TOOL_IMAGE_PATH,
+                              default=settings.DEFAULT_TOOL_IMG)
+
+
 class Recipe(models.Model):
     """ Cocktail's recipe. """
     title = models.CharField('name', max_length=250, db_index=True)
@@ -58,6 +67,8 @@ class Recipe(models.Model):
     components = models.ManyToManyField(CocktailComponent,
                                         related_name='recipes')
     stages = models.ManyToManyField(RecipeStage, related_name='recipes')
+
+    tools = models.ManyToManyField(Tool, related_name='recipes')
 
     COCKTAIL_TYPE = (
         ('st', 'Shot'),

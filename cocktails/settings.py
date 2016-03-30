@@ -53,6 +53,9 @@ INGREDIENT_IMAGE_PATH = 'img/ingredients/'
 # Recipes
 RECIPE_IMAGE_PATH = 'img/recipes/'
 
+# Cocktail tools
+TOOL_IMAGE_PATH = 'img/tools/'
+
 # Default image for ingredients
 DEFAULT_INGREDIENT_IMG = os.path.join(INGREDIENT_IMAGE_PATH,
                                       'default_ingredient.png')
@@ -63,6 +66,11 @@ DEFAULT_INGREDIENT_IMG_PATH = os.path.join(MEDIA_ROOT, DEFAULT_INGREDIENT_IMG)
 DEFAULT_RECIPE_IMG = os.path.join(RECIPE_IMAGE_PATH, 'default_recipe.png')
 DEFAULT_RECIPE_IMG_URL = os.path.join(MEDIA_URL, DEFAULT_RECIPE_IMG)
 DEFAULT_RECIPE_IMG_PATH = os.path.join(MEDIA_ROOT, DEFAULT_RECIPE_IMG)
+
+# Default image fot cocktail tools
+DEFAULT_TOOL_IMG = os.path.join(TOOL_IMAGE_PATH, 'default_tool.png')
+DEFAULT_TOOL_IMG_URL = os.path.join(MEDIA_URL, DEFAULT_TOOL_IMG)
+DEFAULT_TOOL_IMG_PATH = os.path.join(MEDIA_ROOT, DEFAULT_TOOL_IMG)
 
 
 MIDDLEWARE_CLASSES = [
