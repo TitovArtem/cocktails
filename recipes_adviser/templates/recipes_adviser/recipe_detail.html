@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+    {% block content %}
+
     <h1>{{ recipe.title }}</h1>
     <img src="{{ IMAGE_URL }}{{ recipe.title_image.url }}"
          height="{{ img_size.height}}" width="{{ img_size.width }}"/>
@@ -44,6 +40,4 @@
         {% endfor %}
     </ol>
 
-
-</body>
-</html>
+    {% endblock content %}

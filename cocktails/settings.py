@@ -81,7 +81,7 @@ ROOT_URLCONF = 'cocktails.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -93,6 +93,12 @@ TEMPLATES = [
         },
     },
 ]
+
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 
 WSGI_APPLICATION = 'cocktails.wsgi.application'
 
