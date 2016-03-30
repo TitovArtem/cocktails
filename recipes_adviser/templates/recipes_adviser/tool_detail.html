@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ tool.name }}</h1>
+    <img src="{{ IMAGE_URL }}{{ tool.image.url}}"
+         height="{{ img_size.height }}" width="{{ img_size.width }}"/>
+    <p>
+        {% if tool.description %}
+            <strong>Описание: </strong>{{ tool.description }}
+        {% endif %}
+    </p>
+{% endblock content %}

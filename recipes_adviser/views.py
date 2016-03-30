@@ -4,7 +4,7 @@ from django.template import RequestContext, loader
 from django.core.mail import send_mail
 from django.conf import settings
 
-from .models import Ingredient, Recipe
+from .models import Ingredient, Recipe, CocktailTool
 from .forms import ContactForm
 
 
@@ -40,6 +40,14 @@ def recipe(request, recipe_id):
     return render_to_response('recipes_adviser/recipe_detail.html',
                               {'recipe': cocktail, 'img_size': IMG_SIZE,
                                'measures': rus_measures})
+
+
+def tool(request, tool_id):
+    tool_obj = get_object_or_404(CocktailTool, id=tool_id)
+    if not tool_obj.image:
+        tool_obj.image = {'url': settings.DEFAULT_TOOL_IMG_URL}
+    return render_to_response('recipes_adviser/tool_detail.html',
+                              {'tool': tool_obj, 'img_size': IMG_SIZE})
 
 
 def search(request):

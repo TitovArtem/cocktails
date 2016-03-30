@@ -13,6 +13,15 @@
         <strong>Описание: </strong> {{ recipe.description }} <br>
     {% endif %}
 
+    <br>
+    <strong> Инструменты: </strong>
+    <ui>
+        {% for tool in recipe.tools.all %}
+            <li>
+                <a href="{% url 'recipes_adviser:tool_detail' tool.id %}"> {{ tool.name }} </a>
+            </li>
+        {% endfor %}
+    </ui><br>
 
     {% load recipe_extras %}
     <strong>Список ингредиентов: </strong><br>

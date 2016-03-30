@@ -4,7 +4,7 @@
     <p>Найдено {{ ingredients|length }} ингредиентов.</p>
     <ul>
         {% for item in ingredients %}
-        <li><a href="{% url 'recipes_adviser:detail' item.id %}">{{ item.name }}</a></li>
+        <li><a href="{% url 'recipes_adviser:ingredient_detail' item.id %}">{{ item.name }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
