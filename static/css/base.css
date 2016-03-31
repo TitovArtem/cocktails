@@ -8,7 +8,7 @@
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #ffffff;
-    font-size: 26pt;
+    font-size: 32pt;
     text-decoration: none;
     font-family: 'Lobster', cursive;
 }
@@ -16,11 +16,11 @@
 
 .content {
     margin-left: 80px;
-    font-size: 10pt;
+    font-size: 12pt;
 }
 
 
 body {
-    padding-left: 0px;
+    margin: 0px;
     font-color: #E3BCF5;
 }
