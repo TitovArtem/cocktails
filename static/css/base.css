@@ -1,7 +1,8 @@
 
 .page-header {
-    background-color: #AD0085;
+    background-color: #363636;
     margin-top: 0;
+    margin: 0px;
     padding: 0px 20px 0px 20px;
 }
 
@@ -10,9 +11,10 @@
     color: #ffffff;
     font-size: 32pt;
     text-decoration: none;
+    text-shadow: #523CE7 2px 0 0px, #523CE7 0 2px 0px, #523CE7 -2px 0 0px, #523CE7 0 -px 0px;
     font-family: 'Lobster', cursive;
+    margin: 0px;
 }
-
 
 .content {
     margin-left: 80px;
