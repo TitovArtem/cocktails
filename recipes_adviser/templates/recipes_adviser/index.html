@@ -1,11 +1,49 @@
-{% if ingredients %}
-    <ul>
-    {% for item in ingredients %}
-        <li><a href="{% url 'recipes_adviser:ingredient_detail' item.id %}">
-            {{ item.name }}</a>
-        </li>
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block head %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+{% endblock head %}
+
+
+{% block content %}
+
+  {% block logo_area %}
+  <div class="logo">
+    <img class="logo-img" src="{% static 'img/logo.jpg' %}" width="100%" />
+  </div>
+  {% endblock logo_area %}
+
+
+  <div class="search-form">
+    <form action="" method="get">
+      <input class="search-text-field" type="text" name="q">
+      <input class="search-button" type="submit" value="Найти">
+    </form>
+  </div>
+
+
+  {% if errors %}
+  <ul>
+    {% for error in errors %}
+    <li>{{ error }}</li>
     {% endfor %}
+  </ul>
+  {% endif %}
+
+
+
+  {% if recipes %}
+  <div class="recipe-list">
+    <p>Найдено {{ recipes|length }} рецептов.</p>
+    <ul>
+      {% for recipe in recipes %}
+        <li><a href="{% url 'recipes_adviser:recipe_detail' recipe.id %}">{{ recipe.title }}</a></li>
+      {% endfor %}
     </ul>
-{% else %}
-    <p>No ingredients are available.</p>
-{% endif %}
+  </div>
+  {% endif %}
+
+{% endblock content %}

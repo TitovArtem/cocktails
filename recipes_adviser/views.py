@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.template import RequestContext, loader
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -9,12 +8,6 @@ from .forms import ContactForm
 
 
 IMG_SIZE = {'height': 250, 'width': 250}
-
-
-def index(request):
-    ingredients = Ingredient.objects.all()[:20]
-    context = RequestContext(request, {'ingredients': ingredients})
-    return render(request, 'recipes_adviser/index.html', context)
 
 
 def ingredients(request):
@@ -36,7 +29,7 @@ def recipe(request, recipe_id):
     cocktail = get_object_or_404(Recipe, id=recipe_id)
     if not cocktail.title_image:
         cocktail.title_image = {'url': settings.DEFAULT_RECIPE_IMG_URL}
-    rus_measures = {'ml': 'мл.', 'gr': 'гр.', 'pcs': 'шт.'}
+    rus_measures = {'ml': 'мл.', 'g': 'гр.', 'pcs': 'шт.'}
     return render_to_response('recipes_adviser/recipe_detail.html',
                               {'recipe': cocktail, 'img_size': IMG_SIZE,
                                'measures': rus_measures})
@@ -48,6 +41,22 @@ def tool(request, tool_id):
         tool_obj.image = {'url': settings.DEFAULT_TOOL_IMG_URL}
     return render_to_response('recipes_adviser/tool_detail.html',
                               {'tool': tool_obj, 'img_size': IMG_SIZE})
+
+
+def index(request):
+    errors = []
+    recipes = Recipe.objects.all()[:20]
+    if 'q' in request.GET:
+        q = request.GET['q']
+        if not q:
+            errors.append('Поисковой запрос не был задан.')
+        elif len(q) > 20:
+            errors.append('Максимальный размер запроса 20 символов.')
+        else:
+            recipes = Recipe.objects.filter(title__icontains=q)
+            print(recipes)
+    return render_to_response('recipes_adviser/index.html',
+                              {'errors': errors, 'recipes': recipes})
 
 
 def search(request):

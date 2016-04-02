@@ -1,0 +1,42 @@
+
+.logo {
+  position: relative;
+  height: 350px;
+  z-index: 5;
+
+  margin: 0px;
+  overflow: hidden;
+}
+
+.search-form {
+  position: relative;
+  z-index: 10000;
+
+  margin-top: -200px;
+  margin-left: 25%;
+}
+
+.search-text-field {
+  width: 60%;
+  height: 30px;
+
+  font-size: 16px;
+
+  border-radius: 7px;
+  border: 5px thick solid rgba(0,0,0,0.5);
+  box-shadow: 0 0 20px rgba(0,0,0,0.9);
+}
+
+.search-button {
+  height: 30px;
+  width: 70px;
+
+  border-radius: 7px;
+  background-color: #ffffff;
+}
+
+
+.recipe-list {
+  margin-top: 200px;
+  margin-left: 70px;
+}
