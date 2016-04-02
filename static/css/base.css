@@ -1,22 +1,27 @@
 
 .page-header {
-    background-color: #363636;
-    margin: 0px;
-    padding: 0px 20px 0px 20px;
-    height: 55px;
-    border: none;
+  height: 55px;
+  margin: 0px;
+  padding: 0px 20px 0px 20px;
+
+  background-color: #363636;
+  border: none;
 }
 
 
-.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
-    color: #ffffff;
-    font-size: 34pt;
-    font-weight: 600;
-    font-family: 'Lobster', cursive;
-    margin: 0px;
+.page-header h1,
+.page-header h1 a,
+.page-header h1 a:visited,
+.page-header h1 a:active {
+  margin: 0px;
+
+  font-size: 34pt;
+  font-weight: 600;
+  font-family: 'Lobster', cursive;
+
+  color: #ffffff;
 }
 
 .content {
-    font-size: 12pt;
+  font-size: 12pt;
 }
-
