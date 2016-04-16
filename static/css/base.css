@@ -1,11 +1,12 @@
 
 .page-header {
-  height: 55px;
+  height: 50px;
   margin: 0px;
   padding: 0px 20px 0px 20px;
 
-  background-color: #363636;
+  background-color: #1f1f1f;/*#363636;*/
   border: none;
+  box-shadow: 0 0 20px rgba(0,0,0,1);
 }
 
 
@@ -15,7 +16,7 @@
 .page-header h1 a:active {
   margin: 0px;
 
-  font-size: 34pt;
+  font-size: 32pt;
   font-weight: 600;
   font-family: 'Lobster', cursive;
 
@@ -23,5 +24,10 @@
 }
 
 .content {
+  width: 100%;
+
+  margin: 0px;
+  padding: 0px;
+
   font-size: 12pt;
 }

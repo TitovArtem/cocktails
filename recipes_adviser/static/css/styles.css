@@ -1,0 +1,156 @@
+
+.logo-img-container {
+  position: relative;
+  z-index: 5;
+
+  display: flex;
+  height: 350px;
+  margin: 0px;
+  overflow: hidden;
+
+  align-items: center;
+}
+
+.search-form {
+  position: relative;
+  z-index: 10000;
+
+  width: 65%;
+  margin-top: -250px;
+  margin-left: 25%;
+}
+
+
+/* Search field and button for searching recipes. */
+.loup-search-icon {
+  color: white;
+}
+
+.search-text-field {
+  width: 60%;
+  height: 36px;
+  margin: 10px;
+  margin-right: 0px;
+  font-size: 18px;
+  color: white;
+  text-indent: 35px;
+
+  border: none;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 1);
+
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.search-form i {
+  margin-right: -35px;
+}
+
+.search-button {
+  position: relative;
+  left: -5px;
+
+  height: 36px;
+  width: 70px;
+  padding: 0px;
+  margin: 0px;
+  padding-top: 1px;
+
+  border: none;
+  background-color: #ffff3g;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 1);
+}
+
+
+/* Styles for custom checkboxes. */
+.checkbox-container {
+  display: flex;
+  margin-left: -30px;
+  margin-top: 50px;
+  align-items: center;
+}
+
+.checkbox-labels {
+  display: block;
+  max-height: 14px;
+
+  text-align: center;
+  font-size: 14px;
+
+  color: white;
+}
+
+.checkbox-container input[type="checkbox"] {
+  display: none;
+}
+
+.cocktail-checkbox {
+  display: inline-block;
+  margin-right: 15%;
+  vertical-align: top;
+}
+
+.checkbox-container input[type="checkbox"] + label {
+  width: 60px;
+  height: 60px;
+
+  background: rgba(0, 0, 0, 0.65);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+}
+
+.checkbox-container input[type="checkbox"]:checked + label {
+  border-color: blue;
+}
+
+.checkbox-container img {
+  padding: 9px;
+  width: 100%;
+}
+
+
+/* Styles for the area where the list of recipes are outputed. */
+.recipe-list {
+  display: flex;
+  width: 80%;
+  margin: 10%;
+  margin-top: 200px;
+  align-items: center;
+}
+
+.recipe-icon {
+  margin: 20px;
+  width: 300px;
+  height: 300px
+
+  border-radius: 30px;
+}
+
+.recipe-icon h2 {
+  position: absolute;
+  left: 15px;
+  top: 35px;
+
+  width: 100%;
+  padding: 0px;
+}
+
+.recipe-icon h2 span {
+  padding: 10px;
+
+  color: white;
+  font: bold 18px Helvetica, Sans-Serif;
+  letter-spacing: -1px;
+
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 0px 18px 18px 0px;
+}
+
+.recipe-icon img {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  border-radius: 30px;
+}

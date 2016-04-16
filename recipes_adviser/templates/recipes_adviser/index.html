@@ -4,25 +4,58 @@
 
 {% block head %}
   {{ block.super }}
-  <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 {% endblock head %}
 
 
 {% block content %}
 
   {% block logo_area %}
-  <div class="logo">
-    <img class="logo-img" src="{% static 'img/logo.jpg' %}" width="100%" />
+  <div class="logo-area ">
+    <div class="logo-img-container">
+      <img class="logo-img img-responsive" src="{% static 'img/logo_blur.jpeg' %}" width="100%">
+    </div>
   </div>
-  {% endblock logo_area %}
-
 
   <div class="search-form">
     <form action="" method="get">
-      <input class="search-text-field" type="text" name="q">
-      <input class="search-button" type="submit" value="Найти">
+      <span>
+        <i class="loup-search-icon glyphicon glyphicon-search"></i>
+        <input class="search-text-field" type="text" name="q" placeholder="Введите название коктейля">
+        <input class="search-button" type="submit" value="Найти">
+      </span>
+
+      <div class="checkbox-container">
+        <div class="cocktail-checkbox">
+          <input name="cocktails-checkbox" type="checkbox" value="long" id="long-checkbox">
+          <label for="long-checkbox"><img src="{% static 'img/long.png' %}"></label>
+          <label class="checkbox-labels">лонги</label>
+        </div>
+
+        <div class="cocktail-checkbox">
+          <input name="cocktails-checkbox" type="checkbox" value="shot" id="shot-checkbox">
+          <label for="shot-checkbox"><img src="{% static 'img/shot.png' %}"></label>
+          <label class="checkbox-labels">шоты</label>
+        </div>
+
+        <div class="cocktail-checkbox">
+          <input name="cocktails-checkbox" type="checkbox" value="strong" id="strong-checkbox">
+          <label for="strong-checkbox"><img src="{% static 'img/strong.ico' %}"></label>
+          <label class="checkbox-labels">крепкие</label>
+        </div>
+
+        <div class="cocktail-checkbox">
+          <input name="cocktails-checkbox" type="checkbox" value="non-alcoholic" id="non-alcoholic-checkbox">
+          <label for="non-alcoholic-checkbox"><img src="{% static 'img/non-alcoholic.ico' %}"></label>
+          <label class="checkbox-labels">без алкоголя</label>
+        </div>
+
+      </div>
     </form>
   </div>
+
+
+  {% endblock logo_area %}
 
 
   {% if errors %}
@@ -37,12 +70,17 @@
 
   {% if recipes %}
   <div class="recipe-list">
-    <p>Найдено {{ recipes|length }} рецептов.</p>
-    <ul>
+    <!-- <p>Найдено {{ recipes|length }} рецептов.</p> -->
+    <div class="row">
       {% for recipe in recipes %}
-        <li><a href="{% url 'recipes_adviser:recipe_detail' recipe.id %}">{{ recipe.title }}</a></li>
+        <div class="recipe-icon col-xs-6 col-sm-6 col-md-4 col-lg-4">
+          <h2><span>{{ recipe.title }}</span></h2>
+          <a href="{% url 'recipes_adviser:recipe_detail' recipe.id %}">
+            <img class="img-rounded img-responsive center-block" src="{{ IMAGE_URL }}{{ recipe.title_image.url }}" width="180" height="180">
+          </a>
+        </div>
       {% endfor %}
-    </ul>
+    </div>
   </div>
   {% endif %}
 

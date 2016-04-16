@@ -54,7 +54,26 @@ def index(request):
             errors.append('Максимальный размер запроса 20 символов.')
         else:
             recipes = Recipe.objects.filter(title__icontains=q)
-            print(recipes)
+
+    if 'cocktails-checkbox' in request.GET:
+        checkboxes = {'long': False, 'shot': False,
+                      'strong': False, 'non-alcoholic': False}
+        for val in request.GET.getlist('cocktails-checkbox'):
+            checkboxes[val] = True
+
+        print(checkboxes)
+        new_recipes = []
+        for recipe in recipes:
+            print(recipe.get_avg_abv())
+            if checkboxes['long'] and recipe.type == 'lg':
+                new_recipes.append(recipe)
+            elif checkboxes['shot'] and recipe.type == 'st':
+                new_recipes.append(recipe)
+            elif checkboxes['strong'] and recipe.get_avg_abv() > 35:
+                new_recipes.append(recipe)
+            elif checkboxes['non-alcoholic'] and recipe.get_avg_abv() == 0:
+                new_recipes.append(recipe)
+        recipes = new_recipes
     return render_to_response('recipes_adviser/index.html',
                               {'errors': errors, 'recipes': recipes})
 
