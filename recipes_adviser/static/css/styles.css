@@ -41,6 +41,11 @@
   background: rgba(0, 0, 0, 0.9);
 }
 
+.cocktails-search-text-field:focus,
+.cocktails-search-button {
+  border: 1px solid #2e3fef;
+}
+
 .cocktails-search-form i {
   margin-right: -35px;
 }
@@ -99,7 +104,7 @@
 }
 
 .checkbox-container input[type="checkbox"]:checked + label {
-  border-color: blue;
+  border-color: #2e3fef;
 }
 
 .checkbox-container img {
