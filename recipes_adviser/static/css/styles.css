@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-.search-form {
+.cocktails-search-form {
   position: relative;
   z-index: 10000;
 
@@ -26,7 +26,7 @@
   color: white;
 }
 
-.search-text-field {
+.cocktails-search-text-field {
   width: 60%;
   height: 36px;
   margin: 10px;
@@ -41,11 +41,11 @@
   background: rgba(0, 0, 0, 0.9);
 }
 
-.search-form i {
+.cocktails-search-form i {
   margin-right: -35px;
 }
 
-.search-button {
+.cocktails-search-button {
   position: relative;
   left: -5px;
 
