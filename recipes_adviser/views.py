@@ -61,19 +61,20 @@ def index(request):
         for val in request.GET.getlist('cocktails-checkbox'):
             checkboxes[val] = True
 
-        print(checkboxes)
-        new_recipes = []
-        for recipe in recipes:
-            print(recipe.get_avg_abv())
-            if checkboxes['long'] and recipe.type == 'lg':
-                new_recipes.append(recipe)
-            elif checkboxes['shot'] and recipe.type == 'st':
-                new_recipes.append(recipe)
-            elif checkboxes['strong'] and recipe.get_avg_abv() > 35:
-                new_recipes.append(recipe)
-            elif checkboxes['non-alcoholic'] and recipe.get_avg_abv() == 0:
-                new_recipes.append(recipe)
-        recipes = new_recipes
+        if checkboxes['long']:
+            recipes = [recipe for recipe in recipes if recipe.is_long()]
+        if checkboxes['shot']:
+            shots = [recipe for recipe in recipes if recipe.is_shot()]
+            if checkboxes['long']:
+                recipes += shots
+            else:
+                recipes = shots
+        if checkboxes['non-alcoholic'] and not checkboxes['strong']:
+            recipes = [recipe for recipe in recipes
+                       if not recipe.is_alcoholic()]
+        if checkboxes['strong'] and not checkboxes['non-alcoholic']:
+            recipes = [recipe for recipe in recipes if recipe.is_strong()]
+
     return render_to_response('recipes_adviser/index.html',
                               {'errors': errors, 'recipes': recipes})
 
