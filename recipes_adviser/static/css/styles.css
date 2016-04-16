@@ -1,3 +1,7 @@
+.content {
+  min-width: 600px;
+}
+
 
 .logo-img-container {
   position: relative;
@@ -13,11 +17,13 @@
 
 .cocktails-search-form {
   position: relative;
-  z-index: 10000;
+  z-index: 9999;
 
-  width: 65%;
+  max-width: 1200px;
+  margin: 0 auto;
   margin-top: -250px;
-  margin-left: 25%;
+
+  text-align: center;
 }
 
 
@@ -41,8 +47,7 @@
   background: rgba(0, 0, 0, 0.9);
 }
 
-.cocktails-search-text-field:focus,
-.cocktails-search-button {
+.cocktails-search-text-field:focus {
   border: 1px solid #2e3fef;
 }
 
@@ -68,10 +73,7 @@
 
 /* Styles for custom checkboxes. */
 .checkbox-container {
-  display: flex;
-  margin-left: -30px;
   margin-top: 50px;
-  align-items: center;
 }
 
 .checkbox-labels {
@@ -89,8 +91,8 @@
 }
 
 .cocktail-checkbox {
+  margin-right: 4%;
   display: inline-block;
-  margin-right: 15%;
   vertical-align: top;
 }
 

@@ -13,48 +13,45 @@
   {% block logo_area %}
   <div class="logo-area ">
     <div class="logo-img-container">
-      <img class="logo-img img-responsive" src="{% static 'img/logo_blur.jpeg' %}" width="100%">
+      <img class="logo-img" src="{% static 'img/logo_blur.jpeg' %}" width="100%">
+    </div>
+
+    <div class="cocktails-search-form">
+      <form action="" method="get">
+        <span>
+          <i class="loup-search-icon glyphicon glyphicon-search"></i>
+          <input class="cocktails-search-text-field" type="text" name="q" placeholder="Введите название коктейля">
+          <input class="cocktails-search-button" type="submit" value="Найти">
+        </span>
+
+        <div class="checkbox-container">
+          <div class="cocktail-checkbox">
+            <input name="cocktails-checkbox" type="checkbox" value="long" id="long-checkbox">
+            <label for="long-checkbox"><img src="{% static 'img/long.png' %}"></label>
+            <label class="checkbox-labels">лонги</label>
+          </div>
+
+          <div class="cocktail-checkbox">
+            <input name="cocktails-checkbox" type="checkbox" value="shot" id="shot-checkbox">
+            <label for="shot-checkbox"><img src="{% static 'img/shot.png' %}"></label>
+            <label class="checkbox-labels">шоты</label>
+          </div>
+
+          <div class="cocktail-checkbox">
+            <input name="cocktails-checkbox" type="checkbox" value="strong" id="strong-checkbox">
+            <label for="strong-checkbox"><img src="{% static 'img/strong.ico' %}"></label>
+            <label class="checkbox-labels">крепкие</label>
+          </div>
+
+          <div class="cocktail-checkbox">
+            <input name="cocktails-checkbox" type="checkbox" value="non-alcoholic" id="non-alcoholic-checkbox">
+            <label for="non-alcoholic-checkbox"><img src="{% static 'img/non-alcoholic.ico' %}"></label>
+            <label class="checkbox-labels">без алкоголя</label>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
-
-  <div class="cocktails-search-form">
-    <form action="" method="get">
-      <span>
-        <i class="loup-search-icon glyphicon glyphicon-search"></i>
-        <input class="cocktails-search-text-field" type="text" name="q" placeholder="Введите название коктейля">
-        <input class="cocktails-search-button" type="submit" value="Найти">
-      </span>
-
-      <div class="checkbox-container">
-        <div class="cocktail-checkbox">
-          <input name="cocktails-checkbox" type="checkbox" value="long" id="long-checkbox">
-          <label for="long-checkbox"><img src="{% static 'img/long.png' %}"></label>
-          <label class="checkbox-labels">лонги</label>
-        </div>
-
-        <div class="cocktail-checkbox">
-          <input name="cocktails-checkbox" type="checkbox" value="shot" id="shot-checkbox">
-          <label for="shot-checkbox"><img src="{% static 'img/shot.png' %}"></label>
-          <label class="checkbox-labels">шоты</label>
-        </div>
-
-        <div class="cocktail-checkbox">
-          <input name="cocktails-checkbox" type="checkbox" value="strong" id="strong-checkbox">
-          <label for="strong-checkbox"><img src="{% static 'img/strong.ico' %}"></label>
-          <label class="checkbox-labels">крепкие</label>
-        </div>
-
-        <div class="cocktail-checkbox">
-          <input name="cocktails-checkbox" type="checkbox" value="non-alcoholic" id="non-alcoholic-checkbox">
-          <label for="non-alcoholic-checkbox"><img src="{% static 'img/non-alcoholic.ico' %}"></label>
-          <label class="checkbox-labels">без алкоголя</label>
-        </div>
-
-      </div>
-    </form>
-  </div>
-
-
   {% endblock logo_area %}
 
 
