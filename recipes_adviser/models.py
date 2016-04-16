@@ -88,5 +88,50 @@ class Recipe(models.Model):
     type = models.CharField('type of cocktail', max_length=3,
                             choices=COCKTAIL_TYPE)
 
+    def get_min_volume(self):
+        """ Returns the sum of min volumes for each liquid components. """
+        return sum(item.up_quantity for item in self.components.all()
+                   if item.ingredient.liquid)
+
+    def get_max_volume(self):
+        """ Returns the sum of max volumes for each liquid components. """
+        return sum(item.to_quantity if item.to_quantity else item.up_quantity
+                   for item in self.components.all() if item.ingredient.liquid)
+
+    def get_avg_volume(self):
+        """ Returns the sum of averages volumes for each liquid components. """
+        avg_volume = 0
+        for item in self.components.all():
+            if item.ingredient.liquid:
+                if item.to_quantity:
+                    avg_volume += (item.up_quantity + item.to_quantity) / 2.0
+                else:
+                    avg_volume += item.up_quantity
+        return avg_volume
+
+    def get_avg_abv(self):
+        volume = self.get_min_volume()
+        return sum(item.ingredient.abv * item.up_quantity / volume
+                   for item in self.components.all() if item.ingredient.liquid)
+
+    def is_alcoholic(self):
+        is_alcoholic = False
+        for item in self.components.all():
+            if item.ingredient.liquid and item.ingredient.abv > 0.0:
+                is_alcoholic = True
+                break
+        return is_alcoholic
+
+    def is_strong(self):
+        """ Returns true if cocktails has average abv more then 17%. """
+        strong_abv = 17.0
+        return self.get_avg_abv() > strong_abv
+
+    def is_shot(self):
+        return self.type == 'st'
+
+    def is_long(self):
+        return self.type == 'lg'
+
     def __str__(self):
         return self.title
