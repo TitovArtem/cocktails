@@ -5,6 +5,7 @@
 {% block head %}
   {{ block.super }}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <script src="{% static 'js/index.js' %}"></script>
 {% endblock head %}
 
 
@@ -13,7 +14,7 @@
   {% block logo_area %}
   <div class="logo-area ">
     <div class="logo-img-container">
-      <img class="logo-img" src="{% static 'img/logo_blur.jpeg' %}" width="100%">
+      <!-- <img class="logo-img" src="{% static 'img/logo_blur.jpeg' %}" width="100%"> -->
     </div>
 
     <div class="cocktails-search-form">
@@ -50,6 +51,9 @@
           </div>
         </div>
       </form>
+
+      <button class="ingredients-search-open-btn btn btn-info" data-toggle="collapse" data-target="#ingredients-search-container">Поиск по ингредиентам</button>
+      <div id="ingredients-search-container" class="collapse in">Ингредиенты</div>
     </div>
   </div>
   {% endblock logo_area %}
@@ -67,7 +71,7 @@
 
   {% if recipes %}
   <div class="recipe-list">
-    <!-- <p>Найдено {{ recipes|length }} рецептов.</p> -->
+    <!-- <p>Найд  ено {{ recipes|length }} рецептов.</p> -->
     <div class="row">
       {% for recipe in recipes %}
         <div class="recipe-icon col-xs-6 col-sm-6 col-md-4 col-lg-4">

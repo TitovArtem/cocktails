@@ -2,27 +2,23 @@
   min-width: 600px;
 }
 
-
-.logo-img-container {
-  position: relative;
-  z-index: 5;
-
-  display: flex;
+.logo-area {
   height: 350px;
-  margin: 0px;
-  overflow: hidden;
 
-  align-items: center;
+  background: url('../img/logo_blur.jpeg') no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center center;
 }
 
 .cocktails-search-form {
   position: relative;
-  z-index: 9999;
 
   max-width: 1200px;
   margin: 0 auto;
-  margin-top: -250px;
-
+  padding-top: 100px;
   text-align: center;
 }
 
@@ -112,6 +108,11 @@
 .checkbox-container img {
   padding: 9px;
   width: 100%;
+}
+
+.ingredients-search-open-btn {
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
 }
 
 
