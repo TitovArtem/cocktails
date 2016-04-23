@@ -11,46 +11,63 @@
 {% block content %}
 
   {% block logo_area %}
-  <div class="logo-area ">
-    <div class="cocktails-search-form">
-      <form action="" method="get">
-        <span>
-          <i class="loup-search-icon glyphicon glyphicon-search"></i>
-          <input class="cocktails-search-text-field" type="text" name="q" placeholder="Введите название коктейля">
-          <input class="cocktails-search-button" type="submit" value="Найти">
-        </span>
 
-        <div class="checkbox-container">
-          <div class="cocktail-checkbox">
-            <input name="cocktails-checkbox" type="checkbox" value="long" id="long-checkbox">
-            <label for="long-checkbox"><img src="{% static 'img/long.png' %}"></label>
-            <label class="checkbox-labels">лонги</label>
-          </div>
+  <!-- logo area -->
+  <div class="logo-area">
+    <!-- slider -->
+    <div id="logo-slider" class="carousel slide" data-ride="carousel" data-interval="false">
+      <div class="carousel-inner">
+        <!-- slide #1: the form for searching cocktails. -->
+        <div class="item active">
+          <div class="cocktails-search-form">
+            <form action="" method="get">
+              <span>
+                <i class="loup-search-icon glyphicon glyphicon-search"></i>
+                <input class="cocktails-search-text-field" type="text" name="q" placeholder="Введите название коктейля">
+                <input class="cocktails-search-button" type="submit" value="Найти">
+              </span>
 
-          <div class="cocktail-checkbox">
-            <input name="cocktails-checkbox" type="checkbox" value="shot" id="shot-checkbox">
-            <label for="shot-checkbox"><img src="{% static 'img/shot.png' %}"></label>
-            <label class="checkbox-labels">шоты</label>
-          </div>
+              <div class="checkbox-container">
+                <div class="cocktail-checkbox">
+                  <input name="cocktails-checkbox" type="checkbox" value="long" id="long-checkbox">
+                  <label for="long-checkbox"><img src="{% static 'img/long.png' %}"></label>
+                  <label class="checkbox-labels">лонги</label>
+                </div>
 
-          <div class="cocktail-checkbox">
-            <input name="cocktails-checkbox" type="checkbox" value="strong" id="strong-checkbox">
-            <label for="strong-checkbox"><img src="{% static 'img/strong.ico' %}"></label>
-            <label class="checkbox-labels">крепкие</label>
-          </div>
+                <div class="cocktail-checkbox">
+                  <input name="cocktails-checkbox" type="checkbox" value="shot" id="shot-checkbox">
+                  <label for="shot-checkbox"><img src="{% static 'img/shot.png' %}"></label>
+                  <label class="checkbox-labels">шоты</label>
+                </div>
 
-          <div class="cocktail-checkbox">
-            <input name="cocktails-checkbox" type="checkbox" value="non-alcoholic" id="non-alcoholic-checkbox">
-            <label for="non-alcoholic-checkbox"><img src="{% static 'img/non-alcoholic.ico' %}"></label>
-            <label class="checkbox-labels">без алкоголя</label>
+                <div class="cocktail-checkbox">
+                  <input name="cocktails-checkbox" type="checkbox" value="strong" id="strong-checkbox">
+                  <label for="strong-checkbox"><img src="{% static 'img/strong.ico' %}"></label>
+                  <label class="checkbox-labels">крепкие</label>
+                </div>
+
+                <div class="cocktail-checkbox">
+                  <input name="cocktails-checkbox" type="checkbox" value="non-alcoholic" id="non-alcoholic-checkbox">
+                  <label for="non-alcoholic-checkbox"><img src="{% static 'img/non-alcoholic.ico' %}"></label>
+                  <label class="checkbox-labels">без алкоголя</label>
+                </div>
+              </div>
+            </form>
+          </div> <!-- /.cocktails-search-form -->
+          <a class="right carousel-control" href="#logo-slider" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div> <!-- /slide #1 -->
+
+        <!-- slide #2: the form for searching ingredients. -->
+        <div class="item">
+          <div class="container">
+          <h1>Slide 2</h1>
+          <a class="left carousel-control" href="#logo-slider" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
           </div>
         </div>
-      </form>
 
-      <button class="ingredients-search-open-btn btn btn-info" data-toggle="collapse" data-target="#ingredients-search-container">Поиск по ингредиентам</button>
-      <div id="ingredients-search-container" class="collapse in">Ингредиенты</div>
-    </div>
-  </div>
+      </div> <!-- /.carousel-inner -->
+    </div> <!-- /#logo-slider -->
+  </div> <!-- /.logo-area -->
   {% endblock logo_area %}
 
 
