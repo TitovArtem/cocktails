@@ -123,6 +123,7 @@
 
 /* Styles for the area where the list of recipes are outputed. */
 .recipe-list {
+  padding-bottom: 30px;
   margin: 0 auto;
   text-align: center;
 
