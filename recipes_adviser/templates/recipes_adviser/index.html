@@ -54,14 +54,18 @@
               </div>
             </form>
           </div> <!-- /.cocktails-search-form -->
-          <a class="right carousel-control" href="#logo-slider" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+          <a class="right carousel-control" href="#logo-slider" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
         </div> <!-- /slide #1 -->
 
         <!-- slide #2: the form for searching ingredients. -->
         <div class="item">
           <div class="container">
           <h1>Slide 2</h1>
-          <a class="left carousel-control" href="#logo-slider" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+          <a class="left carousel-control" href="#logo-slider" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
           </div>
         </div>
 
@@ -70,7 +74,7 @@
   </div> <!-- /.logo-area -->
   {% endblock logo_area %}
 
-
+<!--
   {% if errors %}
   <ul>
     {% for error in errors %}
@@ -78,15 +82,15 @@
     {% endfor %}
   </ul>
   {% endif %}
-
+-->
 
   {% if recipes %}
   <div class="recipe-list row">
     {% for recipe in recipes %}
       <div class="recipe-icon col-xs-6 col-sm-6 col-md-4 col-lg-4">
-        <h2><span>{{ recipe.title }}</span></h2>
         <a href="{% url 'recipes_adviser:recipe_detail' recipe.id %}">
-            <img class="" src="{{ IMAGE_URL }}{{ recipe.title_image.url }}">
+          <h2><span>{{ recipe.title }}</span></h2>
+          <img class="" src="{{ IMAGE_URL }}{{ recipe.title_image.url }}">
         </a>
       </div>
     {% endfor %}

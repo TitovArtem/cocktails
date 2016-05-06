@@ -125,24 +125,28 @@
 .recipe-list {
   margin: 0 auto;
   text-align: center;
+
+  background-color: #ededed;
 }
 
 .recipe-icon {
+  display: inline-block;
+  float: none;
   width: 300px;
   height: 230px;
   margin-right: 1%;
   margin-top: 3%;
+  padding: 0px;
+
   overflow: hidden;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
-  padding: 0px;
-  
-  display: inline-block;
-  float: none;
 }
 
 .recipe-icon img {
   vertical-align: middle;
   width: 100%;
+  min-height: 100%;
+  overflow: hidden;
 }
 
 .recipe-icon h2 {
@@ -151,16 +155,18 @@
   height: 50px;
   width: 100%;
   margin-top: 0px;
-  background: rgba(0, 0, 0, 0.55);
   text-align: left;
+
+  background: rgba(0, 0, 0, 0.55);
 }
 
 .recipe-icon span {
   position: absolute;
-  color: white;
-  font: bold 20px Helvetica, Sans-Serif;
-  letter-spacing: -1px;
 
   margin-left: 10px;
   padding-top: 10px;
+
+  color: white;
+  font: bold 20px Helvetica, Sans-Serif;
+  letter-spacing: -1px;
 }
