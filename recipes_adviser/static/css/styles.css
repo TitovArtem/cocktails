@@ -143,6 +143,10 @@
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
+.recipe-icon:hover {
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
 .recipe-icon img {
   vertical-align: middle;
   width: 100%;
