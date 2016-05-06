@@ -80,20 +80,16 @@
   {% endif %}
 
 
-
   {% if recipes %}
-  <div class="recipe-list">
-    <!-- <p>Найд  ено {{ recipes|length }} рецептов.</p> -->
-    <div class="row">
-      {% for recipe in recipes %}
-        <div class="recipe-icon col-xs-6 col-sm-6 col-md-4 col-lg-4">
-          <h2><span>{{ recipe.title }}</span></h2>
-          <a href="{% url 'recipes_adviser:recipe_detail' recipe.id %}">
-            <img class="img-rounded img-responsive center-block" src="{{ IMAGE_URL }}{{ recipe.title_image.url }}" width="180" height="180">
-          </a>
-        </div>
-      {% endfor %}
-    </div>
+  <div class="recipe-list row">
+    {% for recipe in recipes %}
+      <div class="recipe-icon col-xs-6 col-sm-6 col-md-4 col-lg-4">
+        <h2><span>{{ recipe.title }}</span></h2>
+        <a href="{% url 'recipes_adviser:recipe_detail' recipe.id %}">
+            <img class="" src="{{ IMAGE_URL }}{{ recipe.title_image.url }}">
+        </a>
+      </div>
+    {% endfor %}
   </div>
   {% endif %}
 

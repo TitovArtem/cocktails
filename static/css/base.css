@@ -2,7 +2,6 @@
 .navbar {
   border: none;
   box-shadow: 0 0 20px rgba(0,0,0,1);
-
 }
 
 .nav-title,
@@ -19,8 +18,10 @@
 
 .content {
   width: 100%;
+  height: 100%;
   margin-top: 50px;
   padding: 0px;
 
   font-size: 12pt;
+  background-color: #ededed;
 }
