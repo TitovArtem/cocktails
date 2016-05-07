@@ -1,4 +1,10 @@
 
+.content {
+  width: 100%;
+
+  background-color: #ededed;
+}
+
 .logo-area {
   height: 350px;
 
@@ -126,8 +132,6 @@
   padding-bottom: 30px;
   margin: 0 auto;
   text-align: center;
-
-  background-color: #ededed;
 }
 
 .recipe-icon {

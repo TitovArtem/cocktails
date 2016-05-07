@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
   {% block content %}
 
+  <div class="col-md-12">
+
   <h1>{{ recipe.title }}</h1>
   <img src="{{ IMAGE_URL }}{{ recipe.title_image.url }}"
      height="{{ img_size.height}}" width="{{ img_size.width }}"/>
@@ -49,4 +51,5 @@
     {% endfor %}
   </ol>
 
+  </div>
   {% endblock content %}
