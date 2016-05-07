@@ -1,52 +1,52 @@
 {% extends 'base.html' %}
-    {% block content %}
+  {% block content %}
 
-    <h1>{{ recipe.title }}</h1>
-    <img src="{{ IMAGE_URL }}{{ recipe.title_image.url }}"
-         height="{{ img_size.height}}" width="{{ img_size.width }}"/>
-    <br><br>
-    {% if recipe.author %}
-        <strong>Автор: </strong> {{ recipe.author }} <br>
-    {% endif %}
+  <h1>{{ recipe.title }}</h1>
+  <img src="{{ IMAGE_URL }}{{ recipe.title_image.url }}"
+     height="{{ img_size.height}}" width="{{ img_size.width }}"/>
+  <br><br>
+  {% if recipe.author %}
+    <strong>Автор: </strong> {{ recipe.author }} <br>
+  {% endif %}
 
-    {% if recipe.description %}
-        <strong>Описание: </strong> {{ recipe.description }} <br>
-    {% endif %}
+  {% if recipe.description %}
+    <strong>Описание: </strong> {{ recipe.description }} <br>
+  {% endif %}
 
-    <br>
-    <strong> Инструменты: </strong>
-    <ui>
-        {% for tool in recipe.tools.all %}
-            <li>
-                <a href="{% url 'recipes_adviser:tool_detail' tool.id %}"> {{ tool.name }} </a>
-            </li>
-        {% endfor %}
-    </ui><br>
+  <br>
+  <strong> Инструменты: </strong>
+  <ui>
+    {% for tool in recipe.tools.all %}
+      <li>
+        <a href="{% url 'recipes_adviser:tool_detail' tool.id %}"> {{ tool.name }} </a>
+      </li>
+    {% endfor %}
+  </ui><br>
 
-    {% load recipe_extras %}
-    <strong>Список ингредиентов: </strong><br>
-    <ul>
-        {% for item in recipe.components.all %}
-            <li>
-                <a href="{% url 'recipes_adviser:ingredient_detail' item.ingredient.id %}">
-                    {{ item.ingredient.name }}
-                </a> -
-                <strong>
-                    {{ item.up_quantity|floatformat:"0" }}
-                    {% if item.to_quantity %}
-                        - {{ item.to_quantity|floatformat:"0" }}
-                    {% endif %}
-                    {{ measures|item:item.ingredient.measure }}
-                </strong>
-            </li>
-        {% endfor %}
-    </ul><br>
+  {% load recipe_extras %}
+  <strong>Список ингредиентов: </strong><br>
+  <ul>
+    {% for item in recipe.components.all %}
+      <li>
+        <a href="{% url 'recipes_adviser:ingredient_detail' item.ingredient.id %}">
+          {{ item.ingredient.name }}
+        </a> -
+        <strong>
+          {{ item.up_quantity|floatformat:"0" }}
+          {% if item.to_quantity %}
+            - {{ item.to_quantity|floatformat:"0" }}
+          {% endif %}
+          {{ measures|item:item.ingredient.measure }}
+        </strong>
+      </li>
+    {% endfor %}
+  </ul><br>
 
-    <strong>Этапы приготовления: </strong>
-    <ol>
-        {% for stage in recipe.stages.all %}
-            <li><p>{{ stage.content }}</p></li>
-        {% endfor %}
-    </ol>
+  <strong>Этапы приготовления: </strong>
+  <ol>
+    {% for stage in recipe.stages.all %}
+      <li><p>{{ stage.content }}</p></li>
+    {% endfor %}
+  </ol>
 
-    {% endblock content %}
+  {% endblock content %}
