@@ -1,55 +1,87 @@
 {% extends 'base.html' %}
-  {% block content %}
 
-  <div class="col-md-12">
+{% load staticfiles %}
 
-  <h1>{{ recipe.title }}</h1>
-  <img src="{{ IMAGE_URL }}{{ recipe.title_image.url }}"
-     height="{{ img_size.height}}" width="{{ img_size.width }}"/>
-  <br><br>
-  {% if recipe.author %}
-    <strong>Автор: </strong> {{ recipe.author }} <br>
-  {% endif %}
+{% block head %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/detail_page_styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/recipe_detail.css' %}" />
+{% endblock head %}
 
-  {% if recipe.description %}
-    <strong>Описание: </strong> {{ recipe.description }} <br>
-  {% endif %}
 
-  <br>
-  <strong> Инструменты: </strong>
-  <ui>
-    {% for tool in recipe.tools.all %}
-      <li>
-        <a href="{% url 'recipes_adviser:tool_detail' tool.id %}"> {{ tool.name }} </a>
-      </li>
-    {% endfor %}
-  </ui><br>
 
-  {% load recipe_extras %}
-  <strong>Список ингредиентов: </strong><br>
-  <ul>
-    {% for item in recipe.components.all %}
-      <li>
-        <a href="{% url 'recipes_adviser:ingredient_detail' item.ingredient.id %}">
-          {{ item.ingredient.name }}
-        </a> -
-        <strong>
-          {{ item.up_quantity|floatformat:"0" }}
-          {% if item.to_quantity %}
-            - {{ item.to_quantity|floatformat:"0" }}
-          {% endif %}
-          {{ measures|item:item.ingredient.measure }}
-        </strong>
-      </li>
-    {% endfor %}
-  </ul><br>
+{% block content %}
 
-  <strong>Этапы приготовления: </strong>
-  <ol>
-    {% for stage in recipe.stages.all %}
-      <li><p>{{ stage.content }}</p></li>
-    {% endfor %}
-  </ol>
+  <!-- container for all items -->
+  <div class="detail-page-container">
 
-  </div>
+    <!-- container for the recipe's name, title image and description -->
+    <div class="detail-page-block title-container col-xs-12">
+      <div class="col-xs-12 col-md-6 col-lg-6">
+        <h1>{{ recipe.title }}</h1><br>
+        <!--
+        {% if recipe.author %}
+          <strong>Автор: </strong> {{ recipe.author }} <br>
+        {% endif %}
+        -->
+        {% if recipe.description %}
+          <p>{{ recipe.description }}</p>
+        {% endif %}
+      </div>
+      <div class="col-xs-12 col-md-6 col-lg-6">
+        <img class="img-responsive" src="{{ IMAGE_URL }}{{ recipe.title_image.url }}">
+      </div>
+    </div> <!-- ./detail-page-block -->
+
+    <!-- container for tools, ingredients and stages blocks -->
+    <div class="row row-eq-height-lg row-eq-height-md">
+      <!-- container for tools and ingredients -->
+      <div class="left-shared-block-md col-xs-12 col-lg-6">
+        <!-- container for tools -->
+        <div class="detail-page-block col-xs-12">
+          <strong> Инструменты: </strong>
+          <ui>
+            {% for tool in recipe.tools.all %}
+              <li>
+                <a href="{% url 'recipes_adviser:tool_detail' tool.id %}"> {{ tool.name }} </a>
+              </li>
+            {% endfor %}
+          </ui><br>
+        </div> <!-- end tools container -->
+
+        <!-- container for ingredients -->
+        <div class="detail-page-block col-xs-12">
+          {% load recipe_extras %}
+          <strong>Список ингредиентов: </strong><br>
+          <ul>
+            {% for item in recipe.components.all %}
+              <li>
+                <a href="{% url 'recipes_adviser:ingredient_detail' item.ingredient.id %}">
+                  {{ item.ingredient.name }}
+                </a> -
+                <strong>
+                  {{ item.up_quantity|floatformat:"0" }}
+                  {% if item.to_quantity %}
+                    - {{ item.to_quantity|floatformat:"0" }}
+                  {% endif %}
+                  {{ measures|item:item.ingredient.measure }}
+                </strong>
+              </li>
+            {% endfor %}
+          </ul><br>
+          </div> <!-- end ingredients container -->
+      </div> <!-- end container for tools and ingredients -->
+
+      <!-- container for stages -->
+      <div class="detail-page-block col-xs-12 col-lg-6">
+        <strong>Этапы приготовления: </strong>
+        <ol>
+          {% for stage in recipe.stages.all %}
+            <li><p>{{ stage.content }}</p></li>
+          {% endfor %}
+        </ol>
+      </div> <!-- end stages container -->
+    </div> <!-- end container for tools, ingredients and stages -->
+  </div>  <!-- ./detail-page-container -->
+
   {% endblock content %}
