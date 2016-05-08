@@ -18,7 +18,7 @@
     <!-- container for the recipe's name, title image and description -->
     <div class="detail-page-block title-container col-xs-12">
       <div class="col-xs-12 col-md-6 col-lg-6">
-        <h1>{{ recipe.title }}</h1><br>
+        <h1>{{ recipe.title }}</h1><hr>
         <!--
         {% if recipe.author %}
           <strong>Автор: </strong> {{ recipe.author }} <br>
@@ -39,7 +39,7 @@
       <div class="left-shared-block-md col-xs-12 col-lg-6">
         <!-- container for tools -->
         <div class="detail-page-block col-xs-12">
-          <strong> Инструменты: </strong>
+          <h3>Инструменты</h3><hr>
           <ui>
             {% for tool in recipe.tools.all %}
               <li>
@@ -52,7 +52,7 @@
         <!-- container for ingredients -->
         <div class="detail-page-block col-xs-12">
           {% load recipe_extras %}
-          <strong>Список ингредиентов: </strong><br>
+          <h3>Список ингредиентов</h3><hr>
           <ul>
             {% for item in recipe.components.all %}
               <li>
@@ -74,7 +74,7 @@
 
       <!-- container for stages -->
       <div class="detail-page-block col-xs-12 col-lg-6">
-        <strong>Этапы приготовления: </strong>
+        <h3>Этапы приготовления</h3><hr>
         <ol>
           {% for stage in recipe.stages.all %}
             <li><p>{{ stage.content }}</p></li>
