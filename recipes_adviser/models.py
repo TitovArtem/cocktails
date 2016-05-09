@@ -51,6 +51,9 @@ class RecipeStage(models.Model):
         short_content = self.content.split('.')[0][:60]
         return '#%d %s' % (self.stage_number, short_content)
 
+    class Meta:
+        ordering = ["stage_number"]
+
 
 class CocktailTool(models.Model):
     """ Tool for making cocktails. """
