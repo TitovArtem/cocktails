@@ -20,9 +20,8 @@ def ingredient(request, ingredient_id):
     ingredient_obj = get_object_or_404(Ingredient, id=ingredient_id)
     if not ingredient_obj.image:
         ingredient_obj.image = {'url': settings.DEFAULT_INGREDIENT_IMG_URL}
-    return render_to_response('recipes_adviser/ingredient_detail.html',
-                              {'ingredient': ingredient_obj,
-                               'img_size': IMG_SIZE})
+    return render_to_response('recipes_adviser/detail_page.html',
+                              {'object': ingredient_obj})
 
 
 def recipe(request, recipe_id):
@@ -38,9 +37,9 @@ def recipe(request, recipe_id):
 def tool(request, tool_id):
     tool_obj = get_object_or_404(CocktailTool, id=tool_id)
     if not tool_obj.image:
-        tool_obj.image = {'url': settings.DEFAULT_TOOL_IMG_URL}
-    return render_to_response('recipes_adviser/tool_detail.html',
-                              {'tool': tool_obj, 'img_size': IMG_SIZE})
+        tool_obj.image = {"url": settings.DEFAULT_TOOL_IMG_URL}
+    return render_to_response("recipes_adviser/detail_page.html",
+                              {"object": tool_obj})
 
 
 def index(request):
