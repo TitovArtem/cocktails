@@ -40,13 +40,13 @@
         <!-- container for tools -->
         <div class="detail-page-block col-xs-12">
           <h3>Инструменты</h3><hr>
-          <ui>
+          <ul>
             {% for tool in recipe.tools.all %}
               <li>
                 <a href="{% url 'recipes_adviser:tool_detail' tool.id %}"> {{ tool.name }} </a>
               </li>
             {% endfor %}
-          </ui><br>
+          </ul><br>
         </div> <!-- end tools container -->
 
         <!-- container for ingredients -->
