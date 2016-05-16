@@ -1,5 +1,6 @@
 .content {
   background-color: #ededed;
+  margin-bottom: 30px;
 }
 
 .detail-page-block {
@@ -10,7 +11,6 @@
 
 .detail-page-container {
   margin-top: 5px;
-  margin-bottom: 30px;
 }
 
 @media (max-width: 767px) {
