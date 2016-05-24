@@ -34,6 +34,23 @@
 }
 
 
+/* Styles for the error block. */
+.errors {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.errors hr {
+  height: 1px;
+  width: 90%;
+
+  background-color: black;
+  color: black;
+}
+
+
 /* Search field and button for searching recipes. */
 .loup-search-icon {
   color: white;

@@ -23,31 +23,31 @@
             <form action="" method="get">
               <span>
                 <i class="loup-search-icon glyphicon glyphicon-search"></i>
-                <input class="cocktails-search-text-field" type="text" name="q" placeholder="Введите название коктейля">
+                {{ recipes_search_form.query }}
                 <input class="cocktails-search-button" type="submit" value="Найти">
               </span>
 
               <div class="checkbox-container">
                 <div class="cocktail-checkbox">
-                  <input name="cocktails-checkbox" type="checkbox" value="long" id="long-checkbox">
+                  {{ recipes_search_form.is_long }}
                   <label for="long-checkbox"><img src="{% static 'img/long.png' %}"></label>
                   <label class="checkbox-labels">лонги</label>
                 </div>
 
                 <div class="cocktail-checkbox">
-                  <input name="cocktails-checkbox" type="checkbox" value="shot" id="shot-checkbox">
+                  {{ recipes_search_form.is_shot }}
                   <label for="shot-checkbox"><img src="{% static 'img/shot.png' %}"></label>
                   <label class="checkbox-labels">шоты</label>
                 </div>
 
                 <div class="cocktail-checkbox">
-                  <input name="cocktails-checkbox" type="checkbox" value="strong" id="strong-checkbox">
+                  {{ recipes_search_form.is_strong }}
                   <label for="strong-checkbox"><img src="{% static 'img/strong.ico' %}"></label>
                   <label class="checkbox-labels">крепкие</label>
                 </div>
 
                 <div class="cocktail-checkbox">
-                  <input name="cocktails-checkbox" type="checkbox" value="non-alcoholic" id="non-alcoholic-checkbox">
+                  {{ recipes_search_form.is_non_alcoholic }}
                   <label for="non-alcoholic-checkbox"><img src="{% static 'img/non-alcoholic.ico' %}"></label>
                   <label class="checkbox-labels">без алкоголя</label>
                 </div>
@@ -74,15 +74,12 @@
   </div> <!-- /.logo-area -->
   {% endblock logo_area %}
 
-<!--
-  {% if errors %}
-  <ul>
-    {% for error in errors %}
-    <li>{{ error }}</li>
-    {% endfor %}
-  </ul>
+  {% if not recipes %}
+  <div class="errors">
+    <h2>Не найдено ни одного рецепта коктейля соответствующего запросу</h2><hr class="hrs">
+    <h5>Попробуйте задать другие критерии поиска и повторить заново</h5>
+  </div>
   {% endif %}
--->
 
   {% if recipes %}
   <div class="recipe-list row">

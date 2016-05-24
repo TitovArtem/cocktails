@@ -1,19 +1,66 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
-from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.core.mail import send_mail
 from django.conf import settings
+from django.views.generic import View
 
 from .models import Ingredient, Recipe, CocktailTool
-from .forms import ContactForm
+from .forms import RecipeSearchForm
 
 
-IMG_SIZE = {'height': 250, 'width': 250}
+class RecipeSearchView(View):
+    """ The view for index page with search form for cocktails. """
 
+    def get(self, request):
+        form = RecipeSearchForm(request.GET)
+        if form.is_valid():
+            q = form.cleaned_data['query']
+            if q:
+                recipes = Recipe.objects.filter(title__icontains=q)
+            else:
+                recipes = Recipe.objects.all()[:20]
 
-def ingredients(request):
-    cocktails = Ingredient.objects.order_by('abv')[:100]
-    output = '\n'.join([str(item) for item in cocktails])
-    return HttpResponse(output)
+            if self.is_any_checkbox_pressed(form):
+                recipes = self.filter_recipes_by_checkboxes(form, recipes)
+        else:
+            recipes = Recipe.objects.all()[:20]
+
+        return render(request, 'recipes_adviser/index.html',
+                      {'recipes_search_form': form, 'recipes': recipes})
+
+    def is_any_checkbox_pressed(self, form):
+        return (form.cleaned_data['is_long']
+                or form.cleaned_data['is_shot']
+                or form.cleaned_data['is_strong']
+                or form.cleaned_data['is_non_alcoholic'])
+
+    def filter_recipes_by_checkboxes(self, form, recipes):
+        recipes = self._filter_by_cocktail_type(form, recipes)
+        return self._filter_by_alcohol(form, recipes)
+
+    def _filter_by_cocktail_type(self, form, recipes):
+        is_long = form.cleaned_data['is_long']
+        is_shot = form.cleaned_data['is_shot']
+        if not (is_long ^ is_shot):  # xor - return if both checkboxes
+            return recipes           # are pressed or both are unpressed
+        result = []
+        for recipe in recipes:
+            if is_long and recipe.is_long():
+                result.append(recipe)
+            elif is_shot and recipe.is_shot():
+                result.append(recipe)
+        return result
+
+    def _filter_by_alcohol(self, form, recipes):
+        is_strong = form.cleaned_data['is_strong']
+        is_non_alc = form.cleaned_data['is_non_alcoholic']
+        if not (is_strong ^ is_non_alc):  # xor - return if both checkboxes
+            return recipes                # are pressed or both are unpressed
+        result = []
+        for recipe in recipes:
+            if is_strong and recipe.is_strong():
+                result.append(recipe)
+            elif is_non_alc and not recipe.is_alcoholic():
+                result.append(recipe)
+        return result
 
 
 def ingredient(request, ingredient_id):
@@ -30,8 +77,7 @@ def recipe(request, recipe_id):
         cocktail.title_image = {'url': settings.DEFAULT_RECIPE_IMG_URL}
     rus_measures = {'ml': 'мл.', 'g': 'гр.', 'pcs': 'шт.'}
     return render_to_response('recipes_adviser/recipe_detail.html',
-                              {'recipe': cocktail, 'img_size': IMG_SIZE,
-                               'measures': rus_measures})
+                              {'recipe': cocktail, 'measures': rus_measures})
 
 
 def tool(request, tool_id):
@@ -40,78 +86,3 @@ def tool(request, tool_id):
         tool_obj.image = {"url": settings.DEFAULT_TOOL_IMG_URL}
     return render_to_response("recipes_adviser/detail_page.html",
                               {"object": tool_obj})
-
-
-def index(request):
-    errors = []
-    recipes = Recipe.objects.all()[:20]
-    if 'q' in request.GET:
-        q = request.GET['q']
-        if not q:
-            errors.append('Поисковой запрос не был задан.')
-        elif len(q) > 20:
-            errors.append('Максимальный размер запроса 20 символов.')
-        else:
-            recipes = Recipe.objects.filter(title__icontains=q)
-
-    if 'cocktails-checkbox' in request.GET:
-        checkboxes = {'long': False, 'shot': False,
-                      'strong': False, 'non-alcoholic': False}
-        for val in request.GET.getlist('cocktails-checkbox'):
-            checkboxes[val] = True
-
-        if checkboxes['long']:
-            recipes = [recipe for recipe in recipes if recipe.is_long()]
-        if checkboxes['shot']:
-            shots = [recipe for recipe in recipes if recipe.is_shot()]
-            if checkboxes['long']:
-                recipes += shots
-            else:
-                recipes = shots
-        if checkboxes['non-alcoholic'] and not checkboxes['strong']:
-            recipes = [recipe for recipe in recipes
-                       if not recipe.is_alcoholic()]
-        if checkboxes['strong'] and not checkboxes['non-alcoholic']:
-            recipes = [recipe for recipe in recipes if recipe.is_strong()]
-
-    return render_to_response('recipes_adviser/index.html',
-                              {'errors': errors, 'recipes': recipes})
-
-
-def search(request):
-    errors = []
-    if 'q' in request.GET:
-        q = request.GET['q']
-        if not q:
-            errors.append('Поисковой запрос не был задан.')
-        elif len(q) > 20:
-            errors.append('Максимальный размер запроса 20 символов.')
-        else:
-            ingredients = Ingredient.objects.filter(name__icontains=q)
-            return render_to_response('recipes_adviser/search_results.html',
-                                      {'ingredients': ingredients, 'query': q})
-    return render_to_response('recipes_adviser/search_form.html',
-                              {'errors': errors})
-
-
-def thanks(request):
-    return render(request, 'recipes_adviser/thanks.html')
-
-
-def contact(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            send_mail(
-                cd['subject'],
-                cd['message'],
-                cd.get('e-mail', 'pbi62007@yandex.ru'),
-                ['pbi62007@yandex.ru'],
-            )
-            return HttpResponseRedirect('/recipes/contact/thanks/')
-    else:
-        form = ContactForm()
-    return render_to_response('recipes_adviser/contact_form.html',
-                              {'form': form})
-
