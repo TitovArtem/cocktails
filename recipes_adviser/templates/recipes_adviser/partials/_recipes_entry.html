@@ -1,0 +1,8 @@
+{% for recipe in recipes %}
+  <div class="recipe-icon col-xs-6 col-sm-6 col-md-4 col-lg-4">
+    <a href="{% url 'recipes_adviser:recipe_detail' recipe.id %}">
+      <h2><span>{{ recipe.title }}</span></h2>
+      <img class="" src="{{ IMAGE_URL }}{{ recipe.title_image.url }}">
+    </a>
+  </div>
+{% endfor %}

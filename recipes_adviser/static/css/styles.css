@@ -34,6 +34,44 @@
 }
 
 
+/* Styles for button to load items by ajax. */
+.upload-items-button-container {
+  position: relative;
+
+  margin: 0 auto;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#upload-items-button {
+  width: 60%;
+  max-width: 300px;
+  height: 50px;
+
+  background-color: white;
+  border: none;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+#upload-items-button:hover {
+  border: 1px solid #c4c4c4;
+  /*box-shadow: 0 0 5px rgba(0,0,0,0.4);*/
+}
+
+#upload-items-button span {
+  margin-right: 10px;
+}
+
+
+
+#upload-items-button span {
+  position: relative;
+  vertical-align: center;
+
+  font-weight: bold;
+}
+
+
 /* Styles for the error block. */
 .errors {
   position: relative;

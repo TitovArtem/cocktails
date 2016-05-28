@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response
 from django.conf import settings
 from django.views.generic import View
+from django.http import HttpResponse
 
 from .models import Ingredient, Recipe, CocktailTool
 from .forms import RecipeSearchForm
@@ -9,6 +10,8 @@ from .forms import RecipeSearchForm
 class RecipeSearchView(View):
     """ The view for index page with search form for cocktails. """
 
+    RECIPE_PER_PAGE = 30
+
     def get(self, request):
         form = RecipeSearchForm(request.GET)
         if form.is_valid():
@@ -16,15 +19,26 @@ class RecipeSearchView(View):
             if q:
                 recipes = Recipe.objects.filter(title__icontains=q)
             else:
-                recipes = Recipe.objects.all()[:20]
+                recipes = Recipe.objects.all()
 
             if self.is_any_checkbox_pressed(form):
                 recipes = self.filter_recipes_by_checkboxes(form, recipes)
         else:
-            recipes = Recipe.objects.all()[:20]
+            recipes = Recipe.objects.all()
 
-        return render(request, 'recipes_adviser/index.html',
-                      {'recipes_search_form': form, 'recipes': recipes})
+        if request.is_ajax():
+            recipes_num = request.GET.get('recipesNum')
+            if not recipes_num:
+                return HttpResponse(self.RECIPE_PER_PAGE)
+            recipes_num = int(recipes_num)
+            recipes = recipes[recipes_num:recipes_num + self.RECIPE_PER_PAGE]
+            return render_to_response(
+                'recipes_adviser/partials/_recipes_entry.html',
+                {"recipes": recipes})
+
+        context = {'recipes_search_form': form,
+                   'recipes': recipes[:self.RECIPE_PER_PAGE]}
+        return render_to_response('recipes_adviser/index.html', context)
 
     def is_any_checkbox_pressed(self, form):
         return (form.cleaned_data['is_long']

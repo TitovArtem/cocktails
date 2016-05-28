@@ -5,6 +5,7 @@
 {% block head %}
   {{ block.super }}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <script src="{% static 'js/index.js' %}"></script>
 {% endblock head %}
 
 
@@ -76,22 +77,22 @@
 
   {% if not recipes %}
   <div class="errors">
-    <h2>Не найдено ни одного рецепта коктейля соответствующего запросу</h2><hr class="hrs">
+    <h2>Не найдено ни одного рецепта коктейля соответствующего запросу</h2>
     <h5>Попробуйте задать другие критерии поиска и повторить заново</h5>
   </div>
   {% endif %}
 
   {% if recipes %}
   <div class="recipe-list row">
-    {% for recipe in recipes %}
-      <div class="recipe-icon col-xs-6 col-sm-6 col-md-4 col-lg-4">
-        <a href="{% url 'recipes_adviser:recipe_detail' recipe.id %}">
-          <h2><span>{{ recipe.title }}</span></h2>
-          <img class="" src="{{ IMAGE_URL }}{{ recipe.title_image.url }}">
-        </a>
-      </div>
-    {% endfor %}
+    {% include 'recipes_adviser/partials/_recipes_entry.html' %}
   </div>
   {% endif %}
+
+  <div class="upload-items-button-container">
+    <button id="upload-items-button">
+        <span class="glyphicon glyphicon-plus"></span>
+        <span class="button-text">Загрузить ещё</span>
+    </button>
+  </div>
 
 {% endblock content %}
