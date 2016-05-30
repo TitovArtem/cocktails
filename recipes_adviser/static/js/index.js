@@ -11,6 +11,7 @@ jQuery(document).ready(function() {
     $.ajax({
       type: "GET",
       url: "/recipes/",
+      cache: false,
       async: false,
       success: function(data) {
         result = data;
@@ -23,7 +24,6 @@ jQuery(document).ready(function() {
     var $recipesNum = $('.recipe-icon').length;
     $.get("/recipes/", {recipesNum: $recipesNum}, function(data) {
         $('.recipe-list').append(data);
-
         if ($('.recipe-icon').length - $recipesNum <= recipesPerPage) {
           $('.upload-items-button-container').remove();
         }
