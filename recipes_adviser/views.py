@@ -104,3 +104,7 @@ def tool(request, tool_id):
 
 def about(request):
     return render_to_response("recipes_adviser/about.html")
+
+
+def about_cocktails(request):
+    return render_to_response("recipes_adviser/about_cocktails.html")
