@@ -100,3 +100,7 @@ def tool(request, tool_id):
         tool_obj.image = {"url": settings.DEFAULT_TOOL_IMG_URL}
     return render_to_response("recipes_adviser/detail_page.html",
                               {"object": tool_obj})
+
+
+def about(request):
+    return render_to_response("recipes_adviser/about.html")

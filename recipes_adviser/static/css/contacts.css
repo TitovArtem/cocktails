@@ -1,0 +1,29 @@
+.site-title,
+.site-title:visited,
+.site-title:active {
+  padding: 15px;
+  font-size: 38pt;
+  font-weight: 600;
+  font-family: 'Lobster', cursive;
+
+  color: black;
+}
+
+.contacts-title-container {
+  width: 100%;
+  height: 90px;
+}
+
+.contacts-title-container img {
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+
+.contacts-container h3, h4 {
+  font-style: oblique;
+  font-weight: 600;
+}
+
+.contacts-container h4 {
+  display: inline;
+}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block head %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/detail_page_styles.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/contacts.css' %}" />
+{% endblock head %}
+
+
+
+{% block content %}
+
+  <div class="detail-page-container contacts-container">
+    <div class="detail-page-block title-container col-xs-12">
+      <div class="contacts-title-container">
+        <h1 class="site-title">Barkeeper<img src="{% static 'img/cocktail-glass.png' %}"></h1>
+      </div><hr>
+      <h3>Barkeeper - это ресурс на котором каждый может подобрать себе коктейль по вкусу</h3>
+      <p>
+        Вы профессиональный бармен и хотите удивить необычным рецептом?<br> Или может быть вы
+        хотите стать звездой вечеринки, угостив друзей хорошим коктейлем?<br> А может вы ищите
+        освежающий молочный коктейль или смузи для себя и свой семьи?<br> Barkeeper поможет вам
+        найти подходящий коткейль и расскажет как его приготовить.
+      </p>
+      <h4>Barkeeper - это open source проект: </h4><a href="https://github.com/TitovArtem/cocktails">GitHub</a><br>
+      <h4>Автор: </h4><span>Титов Артем</span><br><br>МГТУ им. Н.Э. Баумана  2016 г.<br><br>
+    </div> <!-- ./detail-page-block -->
+  </div>  <!-- ./detail-page-container -->
+
+{% endblock content %}
